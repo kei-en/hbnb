@@ -62,7 +62,6 @@ This repository began as a duplicate of [AirBnB_clone_v4](https://github.com/kei
 
   - [Source code](./api)
   - [Documentation](./documentation/API.md)
-  - Swagger documentation - [bdbnb.site/apidocs](https://bdbnb.site/apidocs)
 
 - Automatic deployment scripts.
 
