@@ -1,168 +1,108 @@
-# AirBnB Clone: Phase # 3
+<h1 align="center">hbnb</h1>
+<p align="center">An Airbnb clone.</p>
+
+<p align="center">
+  <img src="https://github.com/kei-en/hbnb/blob/master/assets/hbnb-logo.png"
+       alt="hbnb logo"
+       width="500"
+  >
+</p>
 
 ## Description
 
-Project attempts to clone the the AirBnB application and website, including the
-database, storage, RESTful API, Web Framework, and Front End. Currently the
-application is designed to run with 2 storage engine models:
+hbnb is a complete full-stack web application, integrating a MySQL database and Flask RESTful API with a dynamic HTML5/CSS3/jQuery front-end.
 
-- File Storage Engine:
+<p align="center">
+  <img src="https://github.com/kei-en/hbnb/blob/master/assets/hbnb-stack.png"
+       alt="hbnb logo"
+       width="750"
+  >
+</p>
 
-  - `/models/engine/file_storage.py`
+### Alright, let's do this one last time :sweat_smile:
 
-- Database Storage Engine:
+hbnb was the central web application of the ALX School year one curriculum. The project spanned the course of two months and four versions, each of which you can view at the below links:
 
-  - `/models/engine/db_storage.py`
+1. [AirBnB_clone](https://github.com/kei-en/AirBnB_clone)
+2. [AirBnB_clone_v2](https://github.com/kei-en/AirBnB_clone_v2)
+3. [AirBnB_clone_v3](https://github.com/kei-en/AirBnB_clone_v3)
+4. [AirBnB_clone_v4](https://github.com/kei-en/AirBnB_clone_v4)
 
-  - To Setup the DataBase for testing and development, there are 2 setup
-    scripts that setup a database with certain privileges: `setup_mysql_test.sql`
-    & `setup_mysql_test.sql` (for more on setup, see below).
+The versions listed above are distinct codebases. While the initial version was created from scratch, versions 2, 3, and 4 entailed inheriting and expanding on repositories established by earlier ALX School cohorts. Furthermore, for each iteration, I collaborated and pair programmed with a cohort mate - I worked with a different cohort mate for each version.
 
-  - The Database uses Environmental Variables for tests. To execute tests with
-    the environmental variables prepend these declarations to the execution
-    command:
+This versioning approach provided invaluable practice in pair programming and working on unfamiliar, developed codebases. However, it was not ideal from a portfolio perspective, as it lacked a central, organized repository where I could showcase all of the work I coded and learnt during the course of this clone.
 
-```
-$ HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd \
-HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db \
-[COMMAND HERE]
-```
+This repository is simply the above - an organized, cleaned-up version of hbnb. Call it a minified build if you like.
 
-## Setup
+This repository began as a duplicate of [AirBnB_clone_v4](https://github.com/kei-en/AirBnB_clone_v4), the final version worked on as part of ALX's curriculum. Since then, I've done the following:
 
-This project comes with various setup scripts to support automation, especially
-during maintanence or to scale the entire project. The following files are the
-setupfiles along with a brief explanation:
+- Remove any unnecessary code, leaving only what is required to deliver the program.
+- Put together the front-end, back-end, and API strictly using _my_ code, copying in the personal implementations of each that I worked on across all four versions.
+- Improved the front-end and developed new Puppet and Fabric auto-deployment scripts.
+- Wrote detailed, well-organized documentation for all aspects of the repository.
 
-- **`dev/setup.sql`:** Drops test and dev databases, and then reinitializes
-  the datbase.
+### What this repository does include:
 
-  - Usage: `$ cat dev/setup.sql | mysql -uroot -p`
+- Models class system built in Python.
 
-- **`setup_mysql_dev.sql`:** initialiezs dev database with mysql for testing
+  - [Source code](./models)
+  - [Documentation](./documentation/MODELS.md)
 
-  - Usage: `$ cat setup_mysql_dev.sql | mysql -uroot -p`
+- Python console to manage back-end models
 
-- **`setup_mysql_test.sql`:** initializes test database with mysql for testing
+  - [Source code](./console.py)
+  - [Documentation](./documentation/CONSOLE.md)
 
-  - Usage: `$ cat setup_mysql_test.sql | mysql -uroot -p`
+  - Flask web application server rendering HTML templates with Jinja2
 
-- **`0-setup_web_static.sh`:** sets up nginx web server config file & the file
-  structure.
+  - [Source code](./web_flask)
+  - [Documentation](./documentation/WEB_FLASK.md)
 
-  - Usage: `$ sudo ./0-setup_web_static.sh`
+- RESTful Flask API
 
-- **`3-deploy_web_static.py`:** uses 2 functions from (1-pack_web_static.py &
-  2-do_deploy_web_static.py) that use the fabric3 python integration, to create
-  a `.tgz` file on local host of all the local web static fils, and then calls
-  the other function to deploy the compressed web static files. Command must
-  be executed from the `AirBnB_clone` root directory.
+  - [Source code](./api)
+  - [Documentation](./documentation/API.md)
+  - Swagger documentation - [bdbnb.site/apidocs](https://bdbnb.site/apidocs)
 
-  - Usage: `$ fab -f 3-deploy_web_static.py deploy -i ~/.ssh/holberton -u ubuntu`
+- Automatic deployment scripts.
 
-  ## Testing
+  - [fabfile.py](./fabfile.py)
+  - [setup_server.pp](./setup_server.pp)
+  - [Documentation](./documentation/DEPLOYMENT.md)
 
-### `unittest`
+  Regretfully, the test suite proved to be too extensive to reasonably refactor for this minified repository and did not withstand the demands of four distinct codebases. Which is unfortunate because a large portion of the project's development time was devoted to creating a unittest test suite that tested the entire back end.If you're interested in looking at tests I was involved in writing, my most signficant test work occurred in [AirBnB_clone](https://github.com/kei-en/AirBnB_clone).
 
-This project uses python library, `unittest` to run tests on all python files.
-All unittests are in the `./tests` directory with the command:
+## Dependencies
 
-- File Storage Engine Model:
+| Tool/Library | Version |
+| ------------ | ------- |
+| Python       | ^3.6.4  |
+| MySQL        | ^5.6.0  |
+| Flask        | ^1.0.3  |
+| flasgger     | ^0.9.2  |
+| Flask-Cors   | ^3.0.8  |
+| mysqlclient  | ^1.3.10 |
+| SQLAlchemy   | ^1.3.5  |
 
-  - `$ python3 -m unittest discover -v ./tests/`
+View the complete list of app dependencies in the [requirements.txt](./requirements.txt).
 
-- DataBase Storage Engine Model
+Deployment:
 
-```
-$ HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd \
-HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db \
-python3 -m unittest discover -v ./tests/
-```
+| Tool/Library | Version |
+| ------------ | ------- |
+| Python       | ^3.7.3  |
+| gunicorn     | ^19.9.0 |
+| Fabric       | ^2.4.0  |
+| Puppet       | ^5.4.0  |
 
----
+## Documentation
 
-### All Tests
+In case you missed it - I've documented this entire repository! [Please do check it out!](./documentation)
 
-The bash script `init_test.sh` executes all these tests for both File Storage &
-DataBase Engine Models:
+## Author
 
-- checks `pep8` style
+- **Karanja J Njuguna** - <[kei-en](https://github.com/kei-en)>
 
-- runs all unittests
+## License
 
-- runs all w3c_validator tests
-
-- cleans up all `__pycache__` directories and the storage file, `file.json`
-
-- **Usage `init_test.sh`:**
-
-```
-$ ./dev/init_test.sh
-```
-
----
-
-### CLI Interactive Tests
-
-- This project uses python library, `cmd` to run tests in an interactive command
-  line interface. To begin tests with the CLI, run this script:
-
-#### File Storage Engine Model
-
-```
-$ ./console.py
-```
-
-#### To execute the CLI using the Database Storage Engine Model:
-
-```
-$ HBNB_MYSQL_USER=hbnb_test HBNB_MYSQL_PWD=hbnb_test_pwd \
-HBNB_MYSQL_HOST=localhost HBNB_MYSQL_DB=hbnb_test_db HBNB_TYPE_STORAGE=db \
-./console.py
-```
-
-#### For a detailed description of all tests, run these commands in the CLI:
-
-```
-(hbnb) help help
-List available commands with "help" or detailed help with "help cmd".
-(hbnb) help
-
-Documented commands (type help <topic>):
-========================================
-Amenity    City  Place   State  airbnb  create   help  show
-BaseModel  EOF   Review  User   all     destroy  quit  update
-
-(hbnb) help User
-class method with .function() syntax
-        Usage: User.<command>(<id>)
-(hbnb) help create
-create: create [ARG] [PARAM 1] [PARAM 2] ...
-        ARG = Class Name
-        PARAM = <key name>=<value>
-                value syntax: "<value>"
-        SYNOPSIS: Creates a new instance of the Class from given input ARG
-                  and PARAMS. Key in PARAM = an instance attribute.
-        EXAMPLE: create City name="Chicago"
-                 City.create(name="Chicago")
-```
-
-- Tests in the CLI may also be executed with this syntax:
-
-  - **destroy:** `<class name>.destroy(<id>)`
-
-  - **update:** `<class name>.update(<id>, <attribute name>, <attribute value>)`
-
-  - **update with dictionary:** `<class name>.update(<id>,
-<dictionary representation>)`
-
----
-
-## Authors
-
-Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
-Jennifer Huang - [Github](https://github.com/jhuang10123) / [Twitter](https://twitter.com/earthtojhuang)
-
-Joann Vuong
-
-Karanja J. Njuguna - [Github](https://github.com/kei-en)
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
