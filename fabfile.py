@@ -17,7 +17,7 @@ from datetime import datetime
 from fabric import task
 from invoke.exceptions import UnexpectedExit
 
-hosts = ["ubuntu@3.216.240.188"]
+hosts = ["ubuntu@18.206.232.128"]
 
 
 @task(hosts=hosts)
